@@ -55,6 +55,7 @@ class UsuarioController {
             $usuario->setIdCentroCusto($novoUsuario["idCentroCusto"]);
             $usuario->setSenha($novoUsuario["senha"]);
             $usuario->setTipo($novoUsuario["tipo"]);
+            $usuario->setToken($novoUsuario["token"]);
 
             $this->entityManager->persist($usuario);
             $this->entityManager->flush();

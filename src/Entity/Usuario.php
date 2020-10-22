@@ -37,6 +37,10 @@ class Usuario
      * @ORM\Column(name="id_areatec", type="integer")
      */
     protected $idAreaTec;
+    /**
+     * @ORM\Column(name="token", type="string")
+     */
+    protected $token;
 
     public function getId()
     {
@@ -127,4 +131,17 @@ class Usuario
         $this->senha = $senha;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getToken() {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token) {
+        $this->token = $token;
+    }
 }
