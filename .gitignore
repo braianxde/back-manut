@@ -1,0 +1,4 @@
+test.php
+src/Phinx/Migrations/
+.idea/
+src/vendor/

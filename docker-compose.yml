@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+    manut:
+        build: .
+        volumes:
+            - ./src:/var/www/html
+        ports:
+        -   5000:80
