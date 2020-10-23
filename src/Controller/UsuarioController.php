@@ -3,7 +3,6 @@
 namespace Controller;
 require_once "Entity/Usuario.php";
 
-use Doctrine\ORM\EntityManagerInterface;
 use Usuario;
 
 class UsuarioController {
@@ -50,7 +49,7 @@ class UsuarioController {
         $usuarios = $this->entityManager->getRepository(Usuario::class)->findAll();
 
         if (empty($usuarios)) {
-            //throw new \Exception("Nenhum usuario encontrado");
+            throw new \Exception("Nenhum usuario encontrado");
         }
 
         return $usuarios;

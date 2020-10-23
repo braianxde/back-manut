@@ -1,7 +1,6 @@
 <?php
 
 namespace Controller;
-require_once "bootstrap.php";
 
 use Constants\Constants;
 
