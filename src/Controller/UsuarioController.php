@@ -9,13 +9,13 @@ use Usuario;
 class UsuarioController {
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager) {
-        $this->entityManager = $entityManager;
+    public function __construct() {
+        $this->entityManager = getEntityManager();
     }
 
     public function getUsuarios() {
         try {
-            $usuarios = $this->entityManager->getRepository(Usuario::class)->findAll();
+            $usuarios = $this->getTodosUsuarios();
             $results = [];
 
             if (empty($usuarios)) {
@@ -46,6 +46,16 @@ class UsuarioController {
         }
     }
 
+    private function getTodosUsuarios(){
+        $usuarios = $this->entityManager->getRepository(Usuario::class)->findAll();
+
+        if (empty($usuarios)) {
+            //throw new \Exception("Nenhum usuario encontrado");
+        }
+
+        return $usuarios;
+    }
+
     public function insertUsuario($novoUsuario) {
         try {
             $usuario = new Usuario();
@@ -53,9 +63,9 @@ class UsuarioController {
             $usuario->setEmail($novoUsuario["email"]);
             $usuario->setIdAreaTec($novoUsuario["idAreaTec"]);
             $usuario->setIdCentroCusto($novoUsuario["idCentroCusto"]);
-            $usuario->setSenha($novoUsuario["senha"]);
+            $usuario->setSenha(md5($novoUsuario["senha"]));
             $usuario->setTipo($novoUsuario["tipo"]);
-            $usuario->setToken($novoUsuario["token"]);
+            $usuario->setToken(uid());
 
             $this->entityManager->persist($usuario);
             $this->entityManager->flush();
@@ -99,5 +109,16 @@ class UsuarioController {
                 "msg" => $exception->getMessage()
             ];
         }
+    }
+
+    public function getTokensUsuarios(){
+        $usuarios = $this->getTodosUsuarios();
+        $tokens = [];
+
+        foreach ($usuarios as $usuario) {
+            $tokens[] = $usuario->getToken();
+        }
+
+        return $tokens;
     }
 }

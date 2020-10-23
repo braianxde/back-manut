@@ -1,25 +1,61 @@
 <?php
 
 namespace Common;
-require_once "Controller/UsuarioController.php";
 require_once "bootstrap.php";
+require_once "Controller/UsuarioController.php";
+require_once "Controller/SessionController.php";
 
-use Controller;
+use Controller\SessionController;
+use Controller\UsuarioController;
 use Klein\Klein;
-
 
 $klein = new Klein();
 
-$klein->respond('GET', '/usuarios', function () use ($entityManager) {
-    return json_encode((new Controller\UsuarioController($entityManager))->getUsuarios());
+function verificaLogin($token) {
+    $autenticado = (new SessionController())->verificaLogado($token);
+
+    if (!$autenticado) {
+        throw new \Exception("Usuario nao autenticado", 564);
+    }
+}
+
+function returnUsuarioNaoAutenticado() {
+    return json_encode([
+        "success" => false,
+        "msg" => "Usuario nao autenticado"
+    ]);
+}
+
+$klein->respond('GET', '/usuarios', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new UsuarioController())->getUsuarios());
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+
 });
 
-$klein->respond('POST', '/usuario', function ($request) use ($entityManager) {
-    return json_encode((new Controller\UsuarioController($entityManager))->insertUsuario(json_decode($request->body(), true)));
+$klein->respond('POST', '/usuario', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new UsuarioController())->insertUsuario(json_decode($request->body(), true)));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
 });
 
-$klein->respond('GET', '/usuarios/[i:id]', function ($request) use ($entityManager) {
-    return json_encode((new Controller\UsuarioController($entityManager))->getUsuarioById($request->id));
+$klein->respond('GET', '/usuarios/[i:id]', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new UsuarioController())->getUsuarioById($request->id));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('POST', '/login', function ($request) {
+    return json_encode((new SessionController())->login(json_decode($request->body(), true)));
 });
 
 $klein->dispatch();

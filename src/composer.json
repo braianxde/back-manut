@@ -5,7 +5,9 @@
         "ext-sqlite3": "*",
         "robmorgan/phinx": "^0.12.4",
         "ext-json": "*",
-        "doctrine/orm": "^2.6.2"
+        "doctrine/orm": "^2.6.2",
+        "doctrine/migrations": "^3.0",
+        "doctrine/dbal": "^2.11.3"
     },
     "autoload": {
         "classmap": [
