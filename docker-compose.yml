@@ -6,3 +6,9 @@ services:
             - ./src:/var/www/html
         ports:
         -   5000:80
+    composer_installation:
+        container_name: composer_installation
+        image: composer
+        volumes:
+            - ./src:/app
+        command: composer install --ignore-platform-reqs
