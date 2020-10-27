@@ -18,7 +18,7 @@ class Comentario
      */
     protected $texto;
     /**
-     * @ORM\Column(name="data_comentario", type="date")
+     * @ORM\Column(name="data_comentario", type="datetime")
      */
     protected $dataComentario;
     /**
