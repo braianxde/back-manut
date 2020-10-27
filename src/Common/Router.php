@@ -4,9 +4,11 @@ namespace Common;
 require_once "bootstrap.php";
 require_once "Controller/UsuarioController.php";
 require_once "Controller/SessionController.php";
+require_once "Controller/AreaTecController.php";
 
 use Controller\SessionController;
 use Controller\UsuarioController;
+use Controller\AreaTecController;
 use Klein\Klein;
 
 $klein = new Klein();
@@ -33,7 +35,6 @@ $klein->respond('GET', '/usuarios', function ($request) {
     } catch (\Exception $e) {
         return returnUsuarioNaoAutenticado();
     }
-
 });
 
 $klein->respond('POST', '/usuario', function ($request) {
@@ -57,5 +58,15 @@ $klein->respond('GET', '/usuarios/[i:id]', function ($request) {
 $klein->respond('POST', '/login', function ($request) {
     return json_encode((new SessionController())->login(json_decode($request->body(), true)));
 });
+
+$klein->respond('GET', '/areaTec', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new AreaTecController())->getAreaTecs());
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
 
 $klein->dispatch();
