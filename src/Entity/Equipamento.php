@@ -3,7 +3,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORm\Entity
- * @ORM|Table(name="equipamento")
+ * @ORM\Table(name="equipamento")
  */
 class Equipamento
 {
