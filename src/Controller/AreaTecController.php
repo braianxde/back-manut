@@ -21,4 +21,33 @@ class AreaTecController {
 
         return $areaTecs;
     }
+
+    public function getAreaTecs() {
+        try {
+            $areaTecs = $this->getTodosAreaTec();
+            $results = [];
+
+            if (empty($areaTecs)){
+                throw new \Exception("Nenhuma Área Técnica encontrada");
+            }
+
+            foreach ($areaTecs as $areaTec) {
+                $results[] = [
+                    'id' => $areaTec->getId(),
+                    'nome' => $areaTec->getNome()
+                ];
+            }
+
+            return [
+                "sucess" => true,
+                "data" => $results
+            ];
+
+        } catch (\Exception $exception){
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
+        }
+    }
 }
