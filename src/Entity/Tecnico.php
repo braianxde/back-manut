@@ -25,49 +25,85 @@ class Tecnico
      * @ORM\Column(name="id_usuario", type="integer")
      */
     protected $idUsuario;
+   
 
+    /**
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
-     */
-    public function getNome() {
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nome
+     */ 
+    public function getNome()
+    {
         return $this->nome;
     }
+
     /**
-     * @param mixed $nome
-     */
-    public function setNome($nome) {
+     * Set the value of nome
+     *
+     * @return  self
+     */ 
+    public function setNome($nome)
+    {
         $this->nome = $nome;
+
+        return $this;
     }
 
-     /**
-     * @return mixed
-     */
-    public function getIdAreaTec() {
+    /**
+     * Get the value of idAreaTec
+     */ 
+    public function getIdAreaTec()
+    {
         return $this->idAreaTec;
     }
+
     /**
-     * @param mixed $idAreaTec
-     */
-    public function setIdAreaTec($idAreaTec) {
+     * Set the value of idAreaTec
+     *
+     * @return  self
+     */ 
+    public function setIdAreaTec($idAreaTec)
+    {
         $this->idAreaTec = $idAreaTec;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getIdUsuario() {
+     * Get the value of idUsuario
+     */ 
+    public function getIdUsuario()
+    {
         return $this->idUsuario;
     }
+
     /**
-     * @param mixed $idUsuario
-     */
-    public function setIdUsuario($idUsuario) {
+     * Set the value of idUsuario
+     *
+     * @return  self
+     */ 
+    public function setIdUsuario($idUsuario)
+    {
         $this->idUsuario = $idUsuario;
+
+        return $this;
     }
-    
 }

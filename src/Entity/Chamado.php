@@ -31,7 +31,7 @@ class Chamado {
     /**
      * @ORM\Column(name="status", type="integer")
      */
-    protected $Status;
+    protected $status;
     /**
      * @ORM\Column(name="id_usuario", type="integer")
      */
@@ -49,125 +49,204 @@ class Chamado {
      */
     protected $idEquipamento;
 
+
+    /**
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
-     */
-    public function getAssunto() {
-        return $this->assunto; 
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
+
     /**
-     * @param mixed $assunto
-     */
-    public function setAssunto($assunto) {
+     * Get the value of assunto
+     */ 
+    public function getAssunto()
+    {
+        return $this->assunto;
+    }
+
+    /**
+     * Set the value of assunto
+     *
+     * @return  self
+     */ 
+    public function setAssunto($assunto)
+    {
         $this->assunto = $assunto;
+
+        return $this;
     }
 
-   /**
-     * @return mixed
-     */
-    public function getTexto() {
-        return $this->texto; 
-    }
     /**
-     * @param mixed $texto
-     */
-    public function setTexto($texto) {
+     * Get the value of texto
+     */ 
+    public function getTexto()
+    {
+        return $this->texto;
+    }
+
+    /**
+     * Set the value of texto
+     *
+     * @return  self
+     */ 
+    public function setTexto($texto)
+    {
         $this->texto = $texto;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getDataAbertura() {
-        return $this->data_abertura; 
-    }
-    /**
-     * @param mixed $data_abertura
-     */
-    public function setDataAbertura($data_abertura) {
-        $this->data_abertura = $data_abertura;
+     * Get the value of dataAbertura
+     */ 
+    public function getDataAbertura()
+    {
+        return $this->dataAbertura;
     }
 
     /**
-     * @return mixed
-     */
-    public function getDataFechamento() {
-        return $this->data_fechamento; 
-    }
-    /**
-     * @param mixed $data_fechamento
-     */
-    public function setDataFechamento($data_fechamento) {
-        $this->data_fechamento = $data_fechamento;
+     * Set the value of dataAbertura
+     *
+     * @return  self
+     */ 
+    public function setDataAbertura($dataAbertura)
+    {
+        $this->dataAbertura = $dataAbertura;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getStatus() {
-        return $this->status; 
+     * Get the value of dataFechamento
+     */ 
+    public function getDataFechamento()
+    {
+        return $this->dataFechamento;
     }
+
     /**
-     * @param mixed $status
-     */
-    public function setStatus($status) {
+     * Set the value of dataFechamento
+     *
+     * @return  self
+     */ 
+    public function setDataFechamento($dataFechamento)
+    {
+        $this->dataFechamento = $dataFechamento;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */ 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @return  self
+     */ 
+    public function setStatus($status)
+    {
         $this->status = $status;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getIdUsuario() {
+     * Get the value of idUsuario
+     */ 
+    public function getIdUsuario()
+    {
         return $this->idUsuario;
     }
+
     /**
-     * @param mixed $idUsuario
-     */
-    public function setIdUsuario($idUsuario) {
+     * Set the value of idUsuario
+     *
+     * @return  self
+     */ 
+    public function setIdUsuario($idUsuario)
+    {
         $this->idUsuario = $idUsuario;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getIdTecnico() {
+     * Get the value of idTecnico
+     */ 
+    public function getIdTecnico()
+    {
         return $this->idTecnico;
     }
+
     /**
-     * @param mixed $idTecnico
-     */
-    public function setIdTecnico($idTecnico) {
+     * Set the value of idTecnico
+     *
+     * @return  self
+     */ 
+    public function setIdTecnico($idTecnico)
+    {
         $this->idTecnico = $idTecnico;
+
+        return $this;
     }
 
-     /**
-     * @return mixed
-     */
-    public function getIdAreaTec() {
+    /**
+     * Get the value of idAreaTec
+     */ 
+    public function getIdAreaTec()
+    {
         return $this->idAreaTec;
     }
+
     /**
-     * @param mixed $idAreaTec
-     */
-    public function setIdAreaTec($idAreaTec) {
+     * Set the value of idAreaTec
+     *
+     * @return  self
+     */ 
+    public function setIdAreaTec($idAreaTec)
+    {
         $this->idAreaTec = $idAreaTec;
+
+        return $this;
     }
 
-     /**
-     * @return mixed
-     */
-    public function getIdEquipamento() {
+    /**
+     * Get the value of idEquipamento
+     */ 
+    public function getIdEquipamento()
+    {
         return $this->idEquipamento;
     }
+
     /**
-     * @param mixed $idEquipamento
-     */
-    public function setIdEquipamento($idEquipamento) {
+     * Set the value of idEquipamento
+     *
+     * @return  self
+     */ 
+    public function setIdEquipamento($idEquipamento)
+    {
         $this->idEquipamento = $idEquipamento;
+
+        return $this;
     }
 }

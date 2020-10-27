@@ -22,36 +22,65 @@ class Equipamento
      */
     protected $descricao;
 
+   
+
+    /**
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
-     * @return mixed
-     */
-    public function getNome() {
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of nome
+     */ 
+    public function getNome()
+    {
         return $this->nome;
     }
 
     /**
-     * @param mixed $nome
-     */
-    public function setNome($nome) {
+     * Set the value of nome
+     *
+     * @return  self
+     */ 
+    public function setNome($nome)
+    {
         $this->nome = $nome;
+
+        return $this;
     }
-    
+
     /**
-     * @return mixed
-     */
-    public function getDescricao() {
+     * Get the value of descricao
+     */ 
+    public function getDescricao()
+    {
         return $this->descricao;
     }
 
     /**
-     * @param mixed $descricao
-     */
-    public function setDescricao($descricao) {
+     * Set the value of descricao
+     *
+     * @return  self
+     */ 
+    public function setDescricao($descricao)
+    {
         $this->descricao = $descricao;
+
+        return $this;
     }
 }

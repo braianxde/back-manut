@@ -18,10 +18,6 @@ class Comentario
      */
     protected $texto;
     /**
-     * @ORM\Column(name="id_tecnico", type="integer")
-     */
-    protected $idTecnico;
-    /**
      * @ORM\Column(name="data_comentario", type="date")
      */
     protected $dataComentario;
@@ -31,60 +27,83 @@ class Comentario
     protected $idChamado;
 
 
+    /**
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
-     */
-    public function getTexto() {
-        return $this->texto; 
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
+
     /**
-     * @param mixed $texto
-     */
-    public function setTexto($texto) {
+     * Get the value of texto
+     */ 
+    public function getTexto()
+    {
+        return $this->texto;
+    }
+
+    /**
+     * Set the value of texto
+     *
+     * @return  self
+     */ 
+    public function setTexto($texto)
+    {
         $this->texto = $texto;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getIdTecnico() {
-        return $this->idTecnico;
-    }
-    /**
-     * @param mixed $idTecnico
-     */
-    public function setIdTecnico($idTecnico) {
-        $this->idTecnico = $idTecnico;
+     * Get the value of dataComentario
+     */ 
+    public function getDataComentario()
+    {
+        return $this->dataComentario;
     }
 
     /**
-     * @return mixed
-     */
-    public function getDataComentario() {
-        return $this->data_comentario; 
-    }
-    /**
-     * @param mixed $data_comentario
-     */
-    public function setDataComentario($data_comentario) {
-        $this->data_comentario = $data_comentario;
+     * Set the value of dataComentario
+     *
+     * @return  self
+     */ 
+    public function setDataComentario($dataComentario)
+    {
+        $this->dataComentario = $dataComentario;
+
+        return $this;
     }
 
     /**
-     * @return mixed
-     */
-    public function getIdChamado() {
+     * Get the value of idChamado
+     */ 
+    public function getIdChamado()
+    {
         return $this->idChamado;
     }
+
     /**
-     * @param mixed $idChamado
-     */
-    public function setIdChamado($idChamado) {
+     * Set the value of idChamado
+     *
+     * @return  self
+     */ 
+    public function setIdChamado($idChamado)
+    {
         $this->idChamado = $idChamado;
+
+        return $this;
     }
 }
