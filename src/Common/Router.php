@@ -5,10 +5,16 @@ require_once "bootstrap.php";
 require_once "Controller/UsuarioController.php";
 require_once "Controller/SessionController.php";
 require_once "Controller/AreaTecController.php";
+require_once "Controller/EquipamentoController.php";
+require_once "Controller/CentroCustoController.php";
+require_once "Controller/TecnicoController.php";
 
 use Controller\SessionController;
 use Controller\UsuarioController;
 use Controller\AreaTecController;
+use Controller\EquipamentoController;
+use Controller\CentroCustoController;
+use Controller\TecnicoController;
 use Klein\Klein;
 
 $klein = new Klein();
@@ -63,6 +69,33 @@ $klein->respond('GET', '/areaTec', function ($request) {
     try {
         verificaLogin($request->headers()->get("AuthorizationManut"));
         return json_encode((new AreaTecController())->getAreaTecs());
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('GET', '/equipamento', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new EquipamentoController())->getEquipamentos());
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('GET', '/centroCusto', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new CentroCustoController())->getCentroCustos());
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('GET', '/tecnico', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new TecnicoController())->getTecnicos());
     } catch (\Exception $e) {
         return returnUsuarioNaoAutenticado();
     }
