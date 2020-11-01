@@ -21,11 +21,11 @@ class Chamado {
      */
     protected $texto;
     /**
-     * @ORM\Column(name="data_abertura", type="datetime")
+     * @ORM\Column(name="data_abertura", type="string")
      */
     protected $dataAbertura;
     /**
-     * @ORM\Column(name="data_fechamento", type="datetime")
+     * @ORM\Column(name="data_fechamento", type="string", nullable=true)
      */
     protected $dataFechamento;
     /**
@@ -45,7 +45,7 @@ class Chamado {
      */
     protected $idAreaTec;
     /**
-     * @ORM\Column(name="id_equipamento", type="integer")
+     * @ORM\Column(name="id_equipamento", type="integer", nullable=true)
      */
     protected $idEquipamento;
 

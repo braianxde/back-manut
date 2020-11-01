@@ -50,4 +50,19 @@ class CentroCustoController {
             ];
         }
     }
+
+    public function insertCentroCusto (){
+        $arraycc = [
+            "Maternidade",
+            "Enfermaria"
+        ];
+        
+        foreach($arraycc as $cc){
+            $centroCusto = new CentroCusto();
+            $centroCusto->setNome($cc);
+
+            $this->entityManager->persist($centroCusto);
+            $this->entityManager->flush();
+        }
+    }
 }

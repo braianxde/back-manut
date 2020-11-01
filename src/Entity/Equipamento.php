@@ -9,8 +9,8 @@ class Equipamento
 {
     /**
     * @ORM\Id
-    * @ORM\Column(name="id", type="integer")
-    * @ORM\GeneratedValue
+    * @ORM\Column(name="id", type="integer", unique=true)
+    * @ORM\GeneratedValue(strategy="NONE")
     */
     protected $id;
     /**

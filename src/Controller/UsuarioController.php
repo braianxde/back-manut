@@ -2,6 +2,7 @@
 
 namespace Controller;
 require_once "Entity/Usuario.php";
+require_once "Common/Common.php";
 
 use Usuario;
 
@@ -58,6 +59,7 @@ class UsuarioController {
     public function insertUsuario($novoUsuario) {
         try {
             $usuario = new Usuario();
+            $usuario->setId($novoUsuario["id"]);
             $usuario->setNome($novoUsuario["nome"]);
             $usuario->setEmail($novoUsuario["email"]);
             $usuario->setIdAreaTec($novoUsuario["idAreaTec"]);

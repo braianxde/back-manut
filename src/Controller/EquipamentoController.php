@@ -4,6 +4,7 @@ namespace Controller;
 require_once "Entity/Equipamento.php";
 
 use Equipamento;
+use phpDocumentor\Reflection\Types\Array_;
 
 class EquipamentoController {
     private $entityManager;
@@ -49,6 +50,36 @@ class EquipamentoController {
                 "msg" => $exception->getMessage()
             ];
         }
+    }
+
+    public function insertEquipamento() {
+        $arrayEq = [
+            [
+                "id" => 123457,
+                "nome" => "Computador Dell",
+                "descricao" => "Core2dua, 4Gb RAM, HD240Gb"
+            ],
+            [
+                'id'=>123489,
+                'nome'=>'Maca',
+                'descricao'=>'Metal cinza'
+            ]
+        ];  
+        
+        foreach($arrayEq as $eq){
+            $equipamento = new Equipamento();
+            $equipamento->setId($eq["id"]);
+            $equipamento->setNome($eq["nome"]);
+            $equipamento->setDescricao($eq["descricao"]);
+            
+            $this->entityManager->persist($equipamento);
+            $this->entityManager->flush();
+        }
+            
+        return [
+            "success" => true
+        ];
+        
     }
 
 }

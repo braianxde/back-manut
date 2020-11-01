@@ -9,8 +9,8 @@ class Usuario
 {
     /**
      * @ORM\Id
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\GeneratedValue
+     * @ORM\Column(name="id", type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
     /**
@@ -34,7 +34,7 @@ class Usuario
      */
     protected $idCentroCusto;
     /**
-     * @ORM\Column(name="id_areatec", type="integer")
+     * @ORM\Column(name="id_areatec", type="integer", nullable=true)
      */
     protected $idAreaTec;
     /**
@@ -42,9 +42,24 @@ class Usuario
      */
     protected $token;
 
+    /**
+     * Get the value of id
+     */ 
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
