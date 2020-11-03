@@ -52,20 +52,32 @@ class AreaTecController {
     }
 
     public function insertAreaTecnica (){
-        $arrayAT = [
-            "TI Geral",
-            "TI Salux",
-            "Manutenção Elétrica",
-            "Manutenção Hospitalar",
-            "Marcenaria"
-        ];
-        
-        foreach($arrayAT as $at){
-            $centroCusto = new AreaTec();
-            $centroCusto->setNome($at);
+        try {
+            $arrayAT = [
+                "TI Geral",
+                "TI Salux",
+                "Manutenção Elétrica",
+                "Manutenção Hospitalar",
+                "Marcenaria"
+            ];
+            
+            foreach($arrayAT as $at){
+                $centroCusto = new AreaTec();
+                $centroCusto->setNome($at);
+    
+                $this->entityManager->persist($centroCusto);
+                $this->entityManager->flush();
+            }
 
-            $this->entityManager->persist($centroCusto);
-            $this->entityManager->flush();
+            return ["sucess"=>true];
+
+        } catch (\Exception $exception){
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
         }
+        
+        
     }
 }

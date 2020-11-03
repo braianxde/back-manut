@@ -52,26 +52,35 @@ class CentroCustoController {
     }
 
     public function insertCentroCusto (){
-        $arraycc = [
-            "Maternidade",
-            "Enfermaria",
-            "Radiologia",
-            "Administração",
-            "Centro Cirurgico",
-            "Ambulatório",
-            "Pronto Socorro"
-        ];
+        try {
+            $arraycc = [
+                "Maternidade",
+                "Enfermaria",
+                "Radiologia",
+                "Administração",
+                "Centro Cirurgico",
+                "Ambulatório",
+                "Pronto Socorro"
+            ];
+            
+            foreach($arraycc as $cc){
+                $centroCusto = new CentroCusto();
+                $centroCusto->setNome($cc);
+    
+                $this->entityManager->persist($centroCusto);
+                $this->entityManager->flush();
+            }
+    
+            return [
+                "success" => true
+            ];
+
+        } catch (\Exception $exception){
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
+        }        
         
-        foreach($arraycc as $cc){
-            $centroCusto = new CentroCusto();
-            $centroCusto->setNome($cc);
-
-            $this->entityManager->persist($centroCusto);
-            $this->entityManager->flush();
-        }
-
-        return [
-            "success" => true
-        ];
     }
 }
