@@ -11,6 +11,7 @@ require_once "Controller/TecnicoController.php";
 require_once "Controller/ChamadoController.php";
 require_once "Controller/ComentarioController.php";
 
+use CentroCusto;
 use Controller\SessionController;
 use Controller\UsuarioController;
 use Controller\AreaTecController;
@@ -177,10 +178,48 @@ $klein->respond('GET', '/comentarioPorChamado/[i:idChamado]', function ($request
     }
 });
 
+//rotas para preencher DB para testes
+
 $klein->respond('POST', '/insertEquipamento', function ($request) {
     try {
         verificaLogin($request->headers()->get("AuthorizationManut"));
         return json_encode((new EquipamentoController())->insertEquipamento(json_decode($request->body(), true)));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('POST', '/insertCentroCusto', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new CentroCustoController())->insertCentroCusto(json_decode($request->body(), true)));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('POST', '/insertAreaTecnica', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new AreaTecController())->insertAreaTecnica(json_decode($request->body(), true)));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('POST', '/insertUsuarioTeste', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new UsuarioController())->insertUsuarioTeste(json_decode($request->body(), true)));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('POST', '/insertTecnico', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new TecnicoController())->insertTecnico(json_decode($request->body(), true)));
     } catch (\Exception $e) {
         return returnUsuarioNaoAutenticado();
     }

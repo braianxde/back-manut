@@ -54,7 +54,12 @@ class CentroCustoController {
     public function insertCentroCusto (){
         $arraycc = [
             "Maternidade",
-            "Enfermaria"
+            "Enfermaria",
+            "Radiologia",
+            "Administração",
+            "Centro Cirurgico",
+            "Ambulatório",
+            "Pronto Socorro"
         ];
         
         foreach($arraycc as $cc){
@@ -64,5 +69,9 @@ class CentroCustoController {
             $this->entityManager->persist($centroCusto);
             $this->entityManager->flush();
         }
+
+        return [
+            "success" => true
+        ];
     }
 }

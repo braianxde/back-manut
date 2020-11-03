@@ -52,4 +52,32 @@ class TecnicoController {
             ];
         }
     }
+
+    public function insertTecnico() {
+        $arrayTec = [
+            ["nome" =>"Braian", "idAreaTec"=>3, "idUsiario" =>16938],
+            ["nome" =>"Nadal", "idAreaTec"=>4, "idUsiario" =>19176],
+            ["nome" =>"Almir", "idAreaTec"=>5, "idUsiario" =>33274],
+            ["nome" =>"Marcio", "idAreaTec"=>4, "idUsiario" =>36515],
+            ["nome" =>"Djokovic", "idAreaTec"=>3, "idUsiario" =>36802],
+            ["nome" =>"Federer", "idAreaTec"=>7, "idUsiario" =>37532],
+            ["nome" =>"Alcemar", "idAreaTec"=>6, "idUsiario" =>37577]
+        ];  
+        
+        foreach($arrayTec as $tec){
+            $tecnico = new Tecnico();
+            $tecnico->setNome($tec["nome"]);
+            $tecnico->setIdAreaTec($tec["idAreaTec"]);
+            $tecnico->setIdUsuario($tec["idUsuario"]);
+            
+            $this->entityManager->persist($tecnico);
+            $this->entityManager->flush();
+        }
+            
+        return [
+            "success" => true
+        ];
+        
+    }
+
 }
