@@ -3,6 +3,7 @@
 namespace Common;
 require_once "bootstrap.php";
 require_once "Controller/UsuarioController.php";
+require_once "Controller/UsuarioTipoController.php";
 require_once "Controller/SessionController.php";
 require_once "Controller/AreaTecController.php";
 require_once "Controller/EquipamentoController.php";
@@ -20,6 +21,7 @@ use Controller\CentroCustoController;
 use Controller\TecnicoController;
 use Controller\ChamadoController;
 use Controller\ComentarioController;
+use Controller\UsuarioTipoController;
 use Klein\Klein;
 
 $klein = new Klein();
@@ -43,6 +45,15 @@ $klein->respond('GET', '/usuarios', function ($request) {
     try {
         verificaLogin($request->headers()->get("AuthorizationManut"));
         return json_encode((new UsuarioController())->getUsuarios());
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+$klein->respond('GET', '/usuariosComTipo', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new UsuarioController())->getUsuariosComDescricao());
     } catch (\Exception $e) {
         return returnUsuarioNaoAutenticado();
     }
@@ -220,6 +231,16 @@ $klein->respond('POST', '/insertTecnico', function ($request) {
     try {
         verificaLogin($request->headers()->get("AuthorizationManut"));
         return json_encode((new TecnicoController())->insertTecnico(json_decode($request->body(), true)));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+
+$klein->respond('POST', '/insertUsuarioTipoTeste', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new UsuarioTipoController())->insertUsuariosTiposTeste());
     } catch (\Exception $e) {
         return returnUsuarioNaoAutenticado();
     }

@@ -46,6 +46,38 @@ class UsuarioController {
         }
     }
 
+    public function getUsuariosComDescricao() {
+        try {
+            $queryBuilder = $this->entityManager->createQueryBuilder();
+            $queryBuilder
+                ->select([
+                    "usu.nome",
+                    "usu_tipo.descricao as tipo",
+                    "usu.email"
+                ])
+                ->from("usuario", "usu")
+                ->leftJoin("usuarioTipo", "usu_tipo",'WITH',"usu_tipo.id = usu.tipo");
+
+            $query = $queryBuilder->getQuery();
+            $resultQuery = $query->getResult();
+
+            if (empty($resultQuery)) {
+                throw new \Exception("Nenhum usuario encontrado");
+            }
+
+            return [
+                "success" => true,
+                "data" => $resultQuery
+            ];
+
+        } catch (\Exception $exception){
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
+        }
+    }
+
     private function getTodosUsuarios(){
         $usuarios = $this->entityManager->getRepository(Usuario::class)->findAll();
 
