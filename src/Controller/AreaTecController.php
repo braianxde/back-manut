@@ -33,8 +33,8 @@ class AreaTecController {
 
             foreach ($areaTecs as $areaTec) {
                 $results[] = [
-                    'id' => $areaTec->getId(),
-                    'nome' => $areaTec->getNome()
+                    'value' => $areaTec->getId(),
+                    'text' => $areaTec->getNome()
                 ];
             }
 
