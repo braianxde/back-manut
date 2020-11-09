@@ -44,32 +44,6 @@ class UsuarioTipoController {
         return $usuarios;
     }
 
-    public function insertUsuario($novoUsuario) {
-        try {
-            $usuario = new Usuario();
-            $usuario->setId($novoUsuario["id"]);
-            $usuario->setNome($novoUsuario["nome"]);
-            $usuario->setEmail($novoUsuario["email"]);
-            $usuario->setIdAreaTec($novoUsuario["idAreaTec"]);
-            $usuario->setIdCentroCusto($novoUsuario["idCentroCusto"]);
-            $usuario->setSenha(md5($novoUsuario["senha"]));
-            $usuario->setTipo($novoUsuario["tipo"]);
-            $usuario->setToken(uid());
-
-            $this->entityManager->persist($usuario);
-            $this->entityManager->flush();
-
-            return [
-                "success" => true
-            ];
-        } catch (\Exception $exception){
-            return [
-                "success" => false,
-                "msg" => $exception->getMessage()
-            ];
-        }
-    }
-
     public function insertUsuariosTiposTeste() {
         try {
             $arrayTipos = [

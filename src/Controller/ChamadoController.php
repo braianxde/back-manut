@@ -2,6 +2,9 @@
 
 namespace Controller;
 require_once "Entity/AreaTec.php";
+require_once "Entity/Chamado.php";
+require_once "Entity/Tecnico.php";
+require_once "Entity/CentroCusto.php";
 
 use Chamado;
 
@@ -155,6 +158,55 @@ class ChamadoController {
                 "success" => true
             ];
             
+        } catch (\Exception $exception){
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
+        }
+    }
+
+    public function getChamadoCompletoById($id) {
+        try {
+            $queryBuilder = $this->entityManager->createQueryBuilder();
+            $queryBuilder
+            ->select([
+                "cha.id",
+                "cha.status",
+                "cha.assunto",
+                "cha.texto",
+                "cha.dataAbertura",
+                "cha.idUsuario",
+                "cha.idEquipamento",
+                "equi.nome as nome_equipamento",
+                "equi.descricao as des_equipamento",
+                "usu.nome as solicitante",
+                "area.nome as areaTecnica",
+                "tecn.nome as tecnico",
+                "cec.nome as centro_custo"
+            ])
+
+            ->from("chamado", "cha")
+            ->leftJoin("equipamento", "equi",'WITH',"equi.id = cha.idEquipamento")
+            ->leftJoin("usuario", "usu",'WITH', "usu.id = cha.idUsuario")
+            ->leftJoin("centroCusto", "cec",'WITH', "cec.id = usu.idCentroCusto")
+            ->leftJoin("areaTec", "area",'WITH', "area.id = cha.idAreaTec")
+            ->leftJoin("tecnico", "tecn",'WITH', "tecn.id = cha.idTecnico")
+            ->andWhere("cha.id = :id")
+            ->setParameter("id", $id);
+
+            $query = $queryBuilder->getQuery();
+            $resultQuery = $query->getResult();
+                    
+            if (empty($resultQuery)) {
+                throw new \Exception("Nenhum chamado encontrado");
+            }
+
+            return [
+                "success" => true,
+                "data" => $resultQuery
+            ];
+
         } catch (\Exception $exception){
             return [
                 "success" => false,

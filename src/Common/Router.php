@@ -189,6 +189,18 @@ $klein->respond('GET', '/comentarioPorChamado/[i:idChamado]', function ($request
     }
 });
 
+//Pesquisas com Joins Específicos
+
+$klein->respond('GET', '/chamadoCompleto/[i:id]', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new ChamadoController())->getChamadoCompletoById($request->id));
+    } catch (\Exception $e) {
+        return returnUsuarioNaoAutenticado();
+    }
+});
+
+
 //rotas para preencher DB para testes
 
 $klein->respond('POST', '/insertEquipamento', function ($request) {
