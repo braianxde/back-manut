@@ -10,12 +10,12 @@ class ComentarioController {
     private $entityManager;
 
     public function __construct() {
-        $this->entityManager = getEntityManager(); 
+        $this->entityManager = getEntityManager();
     }
 
-    private function getTodosComentarios(){
+    private function getTodosComentarios() {
         $comentarios = $this->entityManager->getRepository(Comentario::class)->findAll();
-    
+
         if (empty($comentarios)) {
             throw new \Exception("Nenhum comentário encontrado");
         }
@@ -27,7 +27,7 @@ class ComentarioController {
             $comentarios = $this->getTodosComentarios();
             $results = [];
 
-            if (empty($comentarios)){
+            if (empty($comentarios)) {
                 throw new \Exception("Nenhum comentário encontrado");
             }
 
@@ -36,7 +36,7 @@ class ComentarioController {
                     'id' => $comentario->getId(),
                     'texto' => $comentario->getTexto(),
                     'dataComentario' => $comentario->getDataComentario(),
-                    'idChamado' => $comentario->getIdChamado()                   
+                    'idChamado' => $comentario->getIdChamado()
                 ];
             }
 
@@ -45,7 +45,7 @@ class ComentarioController {
                 "data" => $results
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -65,14 +65,15 @@ class ComentarioController {
                 'id' => $comentario->getId(),
                 'texto' => $comentario->getTexto(),
                 'dataComentario' => $comentario->getDataComentario(),
-                'idChamado' => $comentario->getIdChamado()                   
+                'idChamado' => $comentario->getIdChamado()
             ];
+
             return [
                 "success" => true,
                 "data" => $result
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -81,7 +82,7 @@ class ComentarioController {
     }
 
     public function inseriComentario($novoComentario) {
-        
+
         try {
             $comentario = new Comentario();
             $comentario->setTexto($novoComentario["texto"]);
@@ -95,7 +96,7 @@ class ComentarioController {
                 "success" => true
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -115,14 +116,15 @@ class ComentarioController {
                 'id' => $comentario->getId(),
                 'texto' => $comentario->getTexto(),
                 'dataComentario' => $comentario->getDataComentario(),
-                'idChamado' => $comentario->getIdChamado()                   
+                'idChamado' => $comentario->getIdChamado()
             ];
+
             return [
                 "success" => true,
                 "data" => $result
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()

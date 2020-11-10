@@ -1,12 +1,12 @@
 <?php
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="tecnico")
  */
-class Tecnico
-{
+class Tecnico {
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -25,13 +25,12 @@ class Tecnico
      * @ORM\Column(name="id_usuario", type="integer")
      */
     protected $idUsuario;
-   
+
 
     /**
      * Get the value of id
-     */ 
-    public function getId()
-    {
+     */
+    public function getId() {
         return $this->id;
     }
 
@@ -39,9 +38,8 @@ class Tecnico
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId($id)
-    {
+     */
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
@@ -49,9 +47,8 @@ class Tecnico
 
     /**
      * Get the value of nome
-     */ 
-    public function getNome()
-    {
+     */
+    public function getNome() {
         return $this->nome;
     }
 
@@ -59,9 +56,8 @@ class Tecnico
      * Set the value of nome
      *
      * @return  self
-     */ 
-    public function setNome($nome)
-    {
+     */
+    public function setNome($nome) {
         $this->nome = $nome;
 
         return $this;
@@ -69,9 +65,8 @@ class Tecnico
 
     /**
      * Get the value of idAreaTec
-     */ 
-    public function getIdAreaTec()
-    {
+     */
+    public function getIdAreaTec() {
         return $this->idAreaTec;
     }
 
@@ -79,9 +74,8 @@ class Tecnico
      * Set the value of idAreaTec
      *
      * @return  self
-     */ 
-    public function setIdAreaTec($idAreaTec)
-    {
+     */
+    public function setIdAreaTec($idAreaTec) {
         $this->idAreaTec = $idAreaTec;
 
         return $this;
@@ -89,9 +83,8 @@ class Tecnico
 
     /**
      * Get the value of idUsuario
-     */ 
-    public function getIdUsuario()
-    {
+     */
+    public function getIdUsuario() {
         return $this->idUsuario;
     }
 
@@ -99,9 +92,8 @@ class Tecnico
      * Set the value of idUsuario
      *
      * @return  self
-     */ 
-    public function setIdUsuario($idUsuario)
-    {
+     */
+    public function setIdUsuario($idUsuario) {
         $this->idUsuario = $idUsuario;
 
         return $this;

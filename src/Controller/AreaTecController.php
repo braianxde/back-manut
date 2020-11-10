@@ -5,16 +5,16 @@ require_once "Entity/AreaTec.php";
 
 use AreaTec;
 
-class AreaTecController {
+class AreaTecController{
     private $entityManager;
 
     public function __construct() {
-        $this->entityManager = getEntityManager(); 
+        $this->entityManager = getEntityManager();
     }
 
-    private function getTodosAreaTec(){
+    private function getTodosAreaTec() {
         $areaTecs = $this->entityManager->getRepository(AreaTec::class)->findAll();
-    
+
         if (empty($areaTecs)) {
             throw new \Exception("Nenhuma Área Técnica encontrada");
         }
@@ -27,7 +27,7 @@ class AreaTecController {
             $areaTecs = $this->getTodosAreaTec();
             $results = [];
 
-            if (empty($areaTecs)){
+            if (empty($areaTecs)) {
                 throw new \Exception("Nenhuma Área Técnica encontrada");
             }
 
@@ -43,7 +43,7 @@ class AreaTecController {
                 "data" => $results
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -51,7 +51,7 @@ class AreaTecController {
         }
     }
 
-    public function insertAreaTecnica (){
+    public function insertAreaTecnica() {
         try {
             $arrayAT = [
                 "TI Geral",
@@ -60,24 +60,24 @@ class AreaTecController {
                 "Manutenção Hospitalar",
                 "Marcenaria"
             ];
-            
-            foreach($arrayAT as $at){
+
+            foreach ($arrayAT as $at) {
                 $centroCusto = new AreaTec();
                 $centroCusto->setNome($at);
-    
+
                 $this->entityManager->persist($centroCusto);
                 $this->entityManager->flush();
             }
 
-            return ["sucess"=>true];
+            return ["sucess" => true];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
             ];
         }
-        
-        
+
+
     }
 }

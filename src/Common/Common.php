@@ -1,5 +1,5 @@
 <?php
 
-function uid(){
+function uid() {
     return md5(uniqid(rand(), true));
 }

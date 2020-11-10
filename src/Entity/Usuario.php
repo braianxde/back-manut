@@ -1,12 +1,12 @@
 <?php
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="usuario")
  */
-class Usuario
-{
+class Usuario {
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer", unique=true)
@@ -44,9 +44,8 @@ class Usuario
 
     /**
      * Get the value of id
-     */ 
-    public function getId()
-    {
+     */
+    public function getId() {
         return $this->id;
     }
 
@@ -54,9 +53,8 @@ class Usuario
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId($id)
-    {
+     */
+    public function setId($id) {
         $this->id = $id;
 
         return $this;

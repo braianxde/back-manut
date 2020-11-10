@@ -13,12 +13,12 @@ class ChamadoController {
     private $entityManager;
 
     public function __construct() {
-        $this->entityManager = getEntityManager(); 
+        $this->entityManager = getEntityManager();
     }
 
-    private function getTodosChamados(){
+    private function getTodosChamados() {
         $chamados = $this->entityManager->getRepository(Chamado::class)->findAll();
-    
+
         if (empty($chamados)) {
             throw new \Exception("Nenhum chamado encontrado");
         }
@@ -30,7 +30,7 @@ class ChamadoController {
             $chamados = $this->getTodosChamados();
             $results = [];
 
-            if (empty($chamados)){
+            if (empty($chamados)) {
                 throw new \Exception("Nenhum chamado encontrado");
             }
 
@@ -41,11 +41,11 @@ class ChamadoController {
                     'texto' => $chamado->getTexto(),
                     'dataAbertura' => $chamado->getDataAbertura(),
                     'dataFechamento' => $chamado->getDataFechamento(),
-                    'status'=> $chamado->getStatus(),
+                    'status' => $chamado->getStatus(),
                     'idUsuario' => $chamado->getIdUsuario(),
                     'idTecnico' => $chamado->getIdTecnico(),
                     'idAreaTec' => $chamado->getIdAreaTec(),
-                    'idEquipamento' => $chamado->getIdEquipamento()                   
+                    'idEquipamento' => $chamado->getIdEquipamento()
                 ];
             }
 
@@ -54,7 +54,7 @@ class ChamadoController {
                 "data" => $results
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -76,11 +76,11 @@ class ChamadoController {
                 'texto' => $chamado->getTexto(),
                 'dataAbertura' => $chamado->getDataAbertura(),
                 'dataFechamento' => $chamado->getDataFechamento(),
-                'status'=> $chamado->getStatus(),
+                'status' => $chamado->getStatus(),
                 'idUsuario' => $chamado->getIdUsuario(),
                 'idTecnico' => $chamado->getIdTecnico(),
                 'idAreaTec' => $chamado->getIdAreaTec(),
-                'idEquipamento' => $chamado->getIdEquipamento()                   
+                'idEquipamento' => $chamado->getIdEquipamento()
             ];
 
             return [
@@ -88,7 +88,7 @@ class ChamadoController {
                 "data" => $result
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -97,7 +97,7 @@ class ChamadoController {
     }
 
     public function inserirChamado($novoChamado) {
-        
+
         try {
             $chamado = new Chamado();
             $chamado->setAssunto($novoChamado["assunto"]);
@@ -116,7 +116,7 @@ class ChamadoController {
                 "success" => true
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -124,7 +124,7 @@ class ChamadoController {
         }
     }
 
-    public function alterarChamado ($id, $data) {
+    public function alterarChamado($id, $data) {
         try {
             $chamado = $this->entityManager->find('Chamado', $id);
 
@@ -134,7 +134,7 @@ class ChamadoController {
 
             if (!empty($data["status"])) {
                 $chamado->setStatus($data["status"]);
-                if ($data["status"] == 2){
+                if ($data["status"] == 2) {
                     $chamado->setDataFechamento(date("Y-m-d H:i:s"));
                 }
             }
@@ -157,8 +157,8 @@ class ChamadoController {
             return [
                 "success" => true
             ];
-            
-        } catch (\Exception $exception){
+
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -170,34 +170,33 @@ class ChamadoController {
         try {
             $queryBuilder = $this->entityManager->createQueryBuilder();
             $queryBuilder
-            ->select([
-                "cha.id",
-                "cha.status",
-                "cha.assunto",
-                "cha.texto",
-                "cha.dataAbertura",
-                "cha.idUsuario",
-                "cha.idEquipamento",
-                "equi.nome as nome_equipamento",
-                "equi.descricao as des_equipamento",
-                "usu.nome as solicitante",
-                "area.nome as areaTecnica",
-                "tecn.nome as tecnico",
-                "cec.nome as centro_custo"
-            ])
-
-            ->from("chamado", "cha")
-            ->leftJoin("equipamento", "equi",'WITH',"equi.id = cha.idEquipamento")
-            ->leftJoin("usuario", "usu",'WITH', "usu.id = cha.idUsuario")
-            ->leftJoin("centroCusto", "cec",'WITH', "cec.id = usu.idCentroCusto")
-            ->leftJoin("areaTec", "area",'WITH', "area.id = cha.idAreaTec")
-            ->leftJoin("tecnico", "tecn",'WITH', "tecn.id = cha.idTecnico")
-            ->andWhere("cha.id = :id")
-            ->setParameter("id", $id);
+                ->select([
+                    "cha.id",
+                    "cha.status",
+                    "cha.assunto",
+                    "cha.texto",
+                    "cha.dataAbertura",
+                    "cha.idUsuario",
+                    "cha.idEquipamento",
+                    "equi.nome as nome_equipamento",
+                    "equi.descricao as des_equipamento",
+                    "usu.nome as solicitante",
+                    "area.nome as areaTecnica",
+                    "tecn.nome as tecnico",
+                    "cec.nome as centro_custo"
+                ])
+                ->from("chamado", "cha")
+                ->leftJoin("equipamento", "equi", 'WITH', "equi.id = cha.idEquipamento")
+                ->leftJoin("usuario", "usu", 'WITH', "usu.id = cha.idUsuario")
+                ->leftJoin("centroCusto", "cec", 'WITH', "cec.id = usu.idCentroCusto")
+                ->leftJoin("areaTec", "area", 'WITH', "area.id = cha.idAreaTec")
+                ->leftJoin("tecnico", "tecn", 'WITH', "tecn.id = cha.idTecnico")
+                ->andWhere("cha.id = :id")
+                ->setParameter("id", $id);
 
             $query = $queryBuilder->getQuery();
             $resultQuery = $query->getResult();
-                    
+
             if (empty($resultQuery)) {
                 throw new \Exception("Nenhum chamado encontrado");
             }
@@ -207,7 +206,7 @@ class ChamadoController {
                 "data" => $resultQuery
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()

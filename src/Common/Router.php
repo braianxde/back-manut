@@ -147,7 +147,7 @@ $klein->respond('POST', '/chamado', function ($request) {
 $klein->respond('POST', '/chamado/[i:id]', function ($request) {
     try {
         verificaLogin($request->headers()->get("AuthorizationManut"));
-        return json_encode((new ChamadoController())->alterarChamado($request->id,json_decode($request->body(), true)));
+        return json_encode((new ChamadoController())->alterarChamado($request->id, json_decode($request->body(), true)));
     } catch (\Exception $e) {
         return returnUsuarioNaoAutenticado();
     }

@@ -9,12 +9,12 @@ class CentroCustoController {
     private $entityManager;
 
     public function __construct() {
-        $this->entityManager = getEntityManager(); 
+        $this->entityManager = getEntityManager();
     }
 
-    private function getTodosCentroCusto(){
+    private function getTodosCentroCusto() {
         $centroCustos = $this->entityManager->getRepository(CentroCusto::class)->findAll();
-    
+
         if (empty($centroCustos)) {
             throw new \Exception("Nenhum Centro de Custo encontrado");
         }
@@ -27,7 +27,7 @@ class CentroCustoController {
             $centroCustos = $this->getTodosCentroCusto();
             $results = [];
 
-            if (empty($centroCustos)){
+            if (empty($centroCustos)) {
                 throw new \Exception("Nenhum Centro de Custo encontrado");
             }
 
@@ -43,7 +43,7 @@ class CentroCustoController {
                 "data" => $results
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -51,7 +51,7 @@ class CentroCustoController {
         }
     }
 
-    public function insertCentroCusto (){
+    public function insertCentroCusto() {
         try {
             $arraycc = [
                 "Maternidade",
@@ -62,25 +62,25 @@ class CentroCustoController {
                 "Ambulatório",
                 "Pronto Socorro"
             ];
-            
-            foreach($arraycc as $cc){
+
+            foreach ($arraycc as $cc) {
                 $centroCusto = new CentroCusto();
                 $centroCusto->setNome($cc);
-    
+
                 $this->entityManager->persist($centroCusto);
                 $this->entityManager->flush();
             }
-    
+
             return [
                 "success" => true
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
             ];
-        }        
-        
+        }
+
     }
 }

@@ -38,7 +38,7 @@ class UsuarioController {
                 "data" => $results
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -56,7 +56,7 @@ class UsuarioController {
                     "usu.email"
                 ])
                 ->from("usuario", "usu")
-                ->leftJoin("usuarioTipo", "usu_tipo",'WITH',"usu_tipo.id = usu.tipo");
+                ->leftJoin("usuarioTipo", "usu_tipo", 'WITH', "usu_tipo.id = usu.tipo");
 
             $query = $queryBuilder->getQuery();
             $resultQuery = $query->getResult();
@@ -70,7 +70,7 @@ class UsuarioController {
                 "data" => $resultQuery
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -78,7 +78,7 @@ class UsuarioController {
         }
     }
 
-    private function getTodosUsuarios(){
+    private function getTodosUsuarios() {
         $usuarios = $this->entityManager->getRepository(Usuario::class)->findAll();
 
         if (empty($usuarios)) {
@@ -106,7 +106,7 @@ class UsuarioController {
             return [
                 "success" => true
             ];
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -136,7 +136,7 @@ class UsuarioController {
                 "data" => $result
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()
@@ -144,7 +144,7 @@ class UsuarioController {
         }
     }
 
-    public function getTokensUsuarios(){
+    public function getTokensUsuarios() {
         $usuarios = $this->getTodosUsuarios();
         $tokens = [];
 
@@ -158,19 +158,19 @@ class UsuarioController {
     public function insertUsuarioTeste() {
         try {
             $arrayUS = [
-                ["id"=>36802, "nome"=>"Novak Djokovic", "email"=>"djoko@manut.com", "idAreaTec"=>3, "idCentroCusto"=>19, "senha"=>"djoko", "tipo"=>2],
-                ["id"=>19176, "nome"=>"Rafael Nadal", "email"=>"nadal@manut.com", "idAreaTec"=>4, "idCentroCusto"=>16, "senha"=>"nadal", "tipo"=>2],
-                ["id"=>33274, "nome"=>"Almir Silva", "email"=>"almir@manut.com", "idAreaTec"=>5, "idCentroCusto"=>21, "senha"=>"almir", "tipo"=>2],
-                ["id"=>37577, "nome"=>"Alcemar Ferreira", "email"=>"alcemar@manut.com", "idAreaTec"=>6, "idCentroCusto"=>16, "senha"=>"alcemar", "tipo"=>2],
-                ["id"=>37532, "nome"=>"Roger Federer", "email"=>"federer@manut.com", "idAreaTec"=>7, "idCentroCusto"=>20, "senha"=>"federer", "tipo"=>2],
-                ["id"=>36515, "nome"=>"Marcio Becker", "email"=>"becker@manut.com", "idAreaTec"=>4, "idCentroCusto"=>17, "senha"=>"becker", "tipo"=>2],
-                ["id"=>16938, "nome"=>"Braian Schuster", "email"=>"braian@manut.com", "idAreaTec"=>3, "idCentroCusto"=>22, "senha"=>"braian", "tipo"=>2],
-                ["id"=>34441, "nome"=>"Valdir Silva", "email"=>"valdir@manut.com", "idAreaTec"=>null, "idCentroCusto"=>18, "senha"=>"valdir", "tipo"=>3],
-                ["id"=>33666, "nome"=>"Evandro Carvalho", "email"=>"evandro@manut.com", "idAreaTec"=>null, "idCentroCusto"=>17, "senha"=>"evandro", "tipo"=>3],
-                ["id"=>99999, "nome"=>"Pontelho Pinto Papael", "email"=>"papael@manut.com", "idAreaTec"=>null, "idCentroCusto"=>16, "senha"=>"papael", "tipo"=>3]
+                ["id" => 36802, "nome" => "Novak Djokovic", "email" => "djoko@manut.com", "idAreaTec" => 3, "idCentroCusto" => 19, "senha" => "djoko", "tipo" => 2],
+                ["id" => 19176, "nome" => "Rafael Nadal", "email" => "nadal@manut.com", "idAreaTec" => 4, "idCentroCusto" => 16, "senha" => "nadal", "tipo" => 2],
+                ["id" => 33274, "nome" => "Almir Silva", "email" => "almir@manut.com", "idAreaTec" => 5, "idCentroCusto" => 21, "senha" => "almir", "tipo" => 2],
+                ["id" => 37577, "nome" => "Alcemar Ferreira", "email" => "alcemar@manut.com", "idAreaTec" => 6, "idCentroCusto" => 16, "senha" => "alcemar", "tipo" => 2],
+                ["id" => 37532, "nome" => "Roger Federer", "email" => "federer@manut.com", "idAreaTec" => 7, "idCentroCusto" => 20, "senha" => "federer", "tipo" => 2],
+                ["id" => 36515, "nome" => "Marcio Becker", "email" => "becker@manut.com", "idAreaTec" => 4, "idCentroCusto" => 17, "senha" => "becker", "tipo" => 2],
+                ["id" => 16938, "nome" => "Braian Schuster", "email" => "braian@manut.com", "idAreaTec" => 3, "idCentroCusto" => 22, "senha" => "braian", "tipo" => 2],
+                ["id" => 34441, "nome" => "Valdir Silva", "email" => "valdir@manut.com", "idAreaTec" => null, "idCentroCusto" => 18, "senha" => "valdir", "tipo" => 3],
+                ["id" => 33666, "nome" => "Evandro Carvalho", "email" => "evandro@manut.com", "idAreaTec" => null, "idCentroCusto" => 17, "senha" => "evandro", "tipo" => 3],
+                ["id" => 99999, "nome" => "Pontelho Pinto Papael", "email" => "papael@manut.com", "idAreaTec" => null, "idCentroCusto" => 16, "senha" => "papael", "tipo" => 3]
             ];
-            
-            foreach($arrayUS as $us){
+
+            foreach ($arrayUS as $us) {
                 $usuario = new Usuario();
                 $usuario->setId($us["id"]);
                 $usuario->setNome($us["nome"]);
@@ -180,17 +180,16 @@ class UsuarioController {
                 $usuario->setSenha(md5($us["senha"]));
                 $usuario->setTipo($us["tipo"]);
                 $usuario->setToken(uid());
-    
-                
+
                 $this->entityManager->persist($usuario);
                 $this->entityManager->flush();
             }
-                
+
             return [
                 "success" => true
             ];
 
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return [
                 "success" => false,
                 "msg" => $exception->getMessage()

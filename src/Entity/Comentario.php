@@ -1,12 +1,12 @@
 <?php
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="comentario")
  */
-class Comentario 
-{
+class Comentario {
     /**
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
@@ -29,9 +29,8 @@ class Comentario
 
     /**
      * Get the value of id
-     */ 
-    public function getId()
-    {
+     */
+    public function getId() {
         return $this->id;
     }
 
@@ -39,9 +38,8 @@ class Comentario
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId($id)
-    {
+     */
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
@@ -49,9 +47,8 @@ class Comentario
 
     /**
      * Get the value of texto
-     */ 
-    public function getTexto()
-    {
+     */
+    public function getTexto() {
         return $this->texto;
     }
 
@@ -59,9 +56,8 @@ class Comentario
      * Set the value of texto
      *
      * @return  self
-     */ 
-    public function setTexto($texto)
-    {
+     */
+    public function setTexto($texto) {
         $this->texto = $texto;
 
         return $this;
@@ -69,9 +65,8 @@ class Comentario
 
     /**
      * Get the value of dataComentario
-     */ 
-    public function getDataComentario()
-    {
+     */
+    public function getDataComentario() {
         return $this->dataComentario;
     }
 
@@ -79,9 +74,8 @@ class Comentario
      * Set the value of dataComentario
      *
      * @return  self
-     */ 
-    public function setDataComentario($dataComentario)
-    {
+     */
+    public function setDataComentario($dataComentario) {
         $this->dataComentario = $dataComentario;
 
         return $this;
@@ -89,9 +83,8 @@ class Comentario
 
     /**
      * Get the value of idChamado
-     */ 
-    public function getIdChamado()
-    {
+     */
+    public function getIdChamado() {
         return $this->idChamado;
     }
 
@@ -99,9 +92,8 @@ class Comentario
      * Set the value of idChamado
      *
      * @return  self
-     */ 
-    public function setIdChamado($idChamado)
-    {
+     */
+    public function setIdChamado($idChamado) {
         $this->idChamado = $idChamado;
 
         return $this;

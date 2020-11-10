@@ -1,17 +1,17 @@
 <?php
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORm\Entity
  * @ORM\Table(name="equipamento")
  */
-class Equipamento
-{
+class Equipamento {
     /**
-    * @ORM\Id
-    * @ORM\Column(name="id", type="integer", unique=true)
-    * @ORM\GeneratedValue(strategy="NONE")
-    */
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
     protected $id;
     /**
      * @ORM\Column(name="nome", type="string")
@@ -22,13 +22,11 @@ class Equipamento
      */
     protected $descricao;
 
-   
 
     /**
      * Get the value of id
-     */ 
-    public function getId()
-    {
+     */
+    public function getId() {
         return $this->id;
     }
 
@@ -36,9 +34,8 @@ class Equipamento
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId($id)
-    {
+     */
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
@@ -46,9 +43,8 @@ class Equipamento
 
     /**
      * Get the value of nome
-     */ 
-    public function getNome()
-    {
+     */
+    public function getNome() {
         return $this->nome;
     }
 
@@ -56,9 +52,8 @@ class Equipamento
      * Set the value of nome
      *
      * @return  self
-     */ 
-    public function setNome($nome)
-    {
+     */
+    public function setNome($nome) {
         $this->nome = $nome;
 
         return $this;
@@ -66,9 +61,8 @@ class Equipamento
 
     /**
      * Get the value of descricao
-     */ 
-    public function getDescricao()
-    {
+     */
+    public function getDescricao() {
         return $this->descricao;
     }
 
@@ -76,9 +70,8 @@ class Equipamento
      * Set the value of descricao
      *
      * @return  self
-     */ 
-    public function setDescricao($descricao)
-    {
+     */
+    public function setDescricao($descricao) {
         $this->descricao = $descricao;
 
         return $this;

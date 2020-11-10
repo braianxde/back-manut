@@ -2,7 +2,6 @@
 
 namespace Constants;
 
-interface Constants
-{
+interface Constants {
 
 }
