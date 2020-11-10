@@ -77,7 +77,5 @@ class AreaTecController{
                 "msg" => $exception->getMessage()
             ];
         }
-
-
     }
 }
