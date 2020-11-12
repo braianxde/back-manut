@@ -1,10 +1,7 @@
 <?php
-
-namespace Controller;
-require_once "Entity/AreaTec.php";
+namespace App\Controller;
 
 use Comentario;
-
 
 class ComentarioController {
     private $entityManager;

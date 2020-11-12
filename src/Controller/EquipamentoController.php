@@ -1,10 +1,7 @@
 <?php
-
-namespace Controller;
-require_once "Entity/Equipamento.php";
+namespace App\Controller;
 
 use Equipamento;
-use phpDocumentor\Reflection\Types\Array_;
 
 class EquipamentoController {
     private $entityManager;

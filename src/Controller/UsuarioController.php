@@ -1,10 +1,10 @@
 <?php
 
-namespace Controller;
-require_once "Entity/Usuario.php";
+namespace App\Controller;
+
 require_once "Common/Common.php";
 
-use Usuario;
+use App\Entity\Usuario;
 
 class UsuarioController {
     private $entityManager;
@@ -55,8 +55,8 @@ class UsuarioController {
                     "usu_tipo.descricao as tipo",
                     "usu.email"
                 ])
-                ->from("usuario", "usu")
-                ->leftJoin("usuarioTipo", "usu_tipo", 'WITH', "usu_tipo.id = usu.tipo");
+                ->from("App\Entity\Usuario", "usu")
+                ->leftJoin("App\Entity\UsuarioTipo", "usu_tipo", 'WITH', "usu_tipo.id = usu.tipo");
 
             $query = $queryBuilder->getQuery();
             $resultQuery = $query->getResult();

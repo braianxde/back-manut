@@ -1,8 +1,5 @@
 <?php
-
-namespace Controller;
-require_once "Entity/UsuarioTipo.php";
-require_once "Common/Common.php";
+namespace App\Controller;
 
 use UsuarioTipo;
 

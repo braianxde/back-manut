@@ -1,10 +1,7 @@
 <?php
+namespace App\Controller;
 
-namespace Controller;
-
-use Constants\Constants;
-
-class SessionController implements Constants {
+class SessionController{
     private $entityManager;
 
     public function __construct() {
@@ -25,7 +22,7 @@ class SessionController implements Constants {
                 "usu.id",
                 "usu.nome"
             ])
-            ->from("usuario", "usu")
+            ->from("App\Entity\Usuario", "usu")
             ->andWhere("usu.senha = :senha")
             ->setParameter("senha", $senhaMD5)
             ->andWhere("usu.email = :email")

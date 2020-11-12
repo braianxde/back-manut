@@ -1,13 +1,7 @@
 <?php
-
-namespace Controller;
-require_once "Entity/AreaTec.php";
-require_once "Entity/Chamado.php";
-require_once "Entity/Tecnico.php";
-require_once "Entity/CentroCusto.php";
+namespace App\Controller;
 
 use Chamado;
-
 
 class ChamadoController {
     private $entityManager;
