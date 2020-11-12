@@ -12,6 +12,7 @@ use App\Controller\TecnicoController;
 use App\Controller\ChamadoController;
 use App\Controller\ComentarioController;
 use App\Controller\UsuarioTipoController;
+use App\Controller\CentroCustoController;
 
 use Klein\Klein;
 

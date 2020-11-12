@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use Comentario;
+use App\Entity\Comentario;
 
 class ComentarioController {
     private $entityManager;

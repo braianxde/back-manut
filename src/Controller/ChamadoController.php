@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use Chamado;
+use App\Entity\Chamado;
 
 class ChamadoController {
     private $entityManager;

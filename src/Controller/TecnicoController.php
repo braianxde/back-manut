@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use Tecnico;
+use App\Entity\Tecnico;
 
 class TecnicoController {
     private $entityManager;

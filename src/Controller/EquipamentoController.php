@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use Equipamento;
+use App\Entity\Equipamento;
 
 class EquipamentoController {
     private $entityManager;

@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use UsuarioTipo;
+use App\Entity\UsuarioTipo;
 
 class UsuarioTipoController {
     private $entityManager;

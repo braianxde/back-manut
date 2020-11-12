@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use AreaTec;
+use App\Entity\AreaTec;
 
 class AreaTecController{
     private $entityManager;

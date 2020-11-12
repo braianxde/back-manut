@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use CentroCusto;
+use App\Entity\CentroCusto;
 
 class CentroCustoController {
     private $entityManager;
