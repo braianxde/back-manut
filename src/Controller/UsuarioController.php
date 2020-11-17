@@ -116,7 +116,7 @@ class UsuarioController {
 
     public function getUsuarioById($id) {
         try {
-            $usuario = $this->entityManager->find('Usuario', $id);
+            $usuario = $this->entityManager->find('App\Entity\Usuario', $id);
 
             if (empty($usuario)) {
                 throw new \Exception("Nenhum usuario encontrado");

@@ -58,7 +58,7 @@ class ChamadoController {
 
     public function getChamadoById($id) {
         try {
-            $chamado = $this->entityManager->find('Chamado', $id);
+            $chamado = $this->entityManager->find('App\Entity\Chamado', $id);
 
             if (empty($chamado)) {
                 throw new \Exception("Nenhum chamado encontrado");
@@ -120,7 +120,7 @@ class ChamadoController {
 
     public function alterarChamado($id, $data) {
         try {
-            $chamado = $this->entityManager->find('Chamado', $id);
+            $chamado = $this->entityManager->find('App\Entity\Chamado', $id);
 
             if (empty($chamado)) {
                 throw new \Exception("Nenhum chamado encontrado");
@@ -179,12 +179,12 @@ class ChamadoController {
                     "tecn.nome as tecnico",
                     "cec.nome as centro_custo"
                 ])
-                ->from("chamado", "cha")
-                ->leftJoin("equipamento", "equi", 'WITH', "equi.id = cha.idEquipamento")
-                ->leftJoin("usuario", "usu", 'WITH', "usu.id = cha.idUsuario")
-                ->leftJoin("centroCusto", "cec", 'WITH', "cec.id = usu.idCentroCusto")
-                ->leftJoin("areaTec", "area", 'WITH', "area.id = cha.idAreaTec")
-                ->leftJoin("tecnico", "tecn", 'WITH', "tecn.id = cha.idTecnico")
+                ->from("App\Entity\Chamado", "cha")
+                ->leftJoin("App\Entity\Equipamento", "equi", 'WITH', "equi.id = cha.idEquipamento")
+                ->leftJoin("App\Entity\Usuario", "usu", 'WITH', "usu.id = cha.idUsuario")
+                ->leftJoin("App\Entity\CentroCusto", "cec", 'WITH', "cec.id = usu.idCentroCusto")
+                ->leftJoin("App\Entity\AreaTec", "area", 'WITH', "area.id = cha.idAreaTec")
+                ->leftJoin("App\Entity\Tecnico", "tecn", 'WITH', "tecn.id = cha.idTecnico")
                 ->andWhere("cha.id = :id")
                 ->setParameter("id", $id);
 

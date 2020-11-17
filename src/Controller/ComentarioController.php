@@ -52,7 +52,7 @@ class ComentarioController {
 
     public function getComentarioById($id) {
         try {
-            $comentario = $this->entityManager->find('Comentario', $id);
+            $comentario = $this->entityManager->find('App\Entity\Comentario', $id);
 
             if (empty($comentario)) {
                 throw new \Exception("Nenhum comentário encontrado");
@@ -103,7 +103,7 @@ class ComentarioController {
 
     public function getComentarioByIdChamado($idChamado) {
         try {
-            $comentario = $this->entityManager->find('Comentario', $idChamado);
+            $comentario = $this->entityManager->find('App\Entity\Comentario', $idChamado);
 
             if (empty($comentario)) {
                 throw new \Exception("Nenhum comentário encontrado");

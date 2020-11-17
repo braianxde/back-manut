@@ -50,7 +50,7 @@ class EquipamentoController {
 
     public function getEquipamentoById($id) {
         try {
-            $equipamento = $this->entityManager->find('Equipamento', $id);
+            $equipamento = $this->entityManager->find('App\Entity\Equipamento', $id);
 
             if (empty($equipamento)) {
                 throw new \Exception("Nenhum equipamento encontrado");
