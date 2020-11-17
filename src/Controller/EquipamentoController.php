@@ -48,6 +48,33 @@ class EquipamentoController {
         }
     }
 
+    public function getEquipamentoById($id) {
+        try {
+            $equipamento = $this->entityManager->find('Equipamento', $id);
+
+            if (empty($equipamento)) {
+                throw new \Exception("Nenhum equipamento encontrado");
+            }
+
+            $result[] = [
+                'id' => $equipamento->getId(),
+                'nome' => $equipamento->getNome(),
+                'descricao' => $equipamento->getDescricao()
+            ];
+
+            return [
+                "success" => true,
+                "data" => $result
+            ];
+
+        } catch (\Exception $exception) {
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
+        }
+    }
+
     public function insertEquipamento() {
         try {
             $arrayEq = [

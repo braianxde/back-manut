@@ -13,7 +13,7 @@ use App\Controller\ChamadoController;
 use App\Controller\ComentarioController;
 use App\Controller\UsuarioTipoController;
 use App\Controller\CentroCustoController;
-
+use App\Entity\Equipamento;
 use Klein\Klein;
 
 $klein = new Klein();
@@ -87,6 +87,15 @@ $klein->respond('GET', '/equipamento', function ($request) {
     try {
         verificaLogin($request->headers()->get("AuthorizationManut"));
         return json_encode((new EquipamentoController())->getEquipamentos());
+    } catch (\Exception $exception) {
+        return returnUsuarioNaoAutenticadoOrExeption($exception);
+    }
+});
+
+$klein->respond('GET', '/equipamentoId/[i:id]', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new EquipamentoController())->getEquipamentoById($request->id));
     } catch (\Exception $exception) {
         return returnUsuarioNaoAutenticadoOrExeption($exception);
     }
