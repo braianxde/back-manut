@@ -39,7 +39,7 @@ class Chamado {
      */
     protected $idUsuario;
     /**
-     * @ORM\Column(name="id_tecnico", type="integer")
+     * @ORM\Column(name="id_tecnico", type="integer", nullable=true)
      */
     protected $idTecnico;
     /**

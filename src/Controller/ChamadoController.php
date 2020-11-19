@@ -207,4 +207,52 @@ class ChamadoController {
             ];
         }
     }
+
+    public function getChamadoCompletoByIdAreaTec($idAreaTec) {
+        try {
+            $queryBuilder = $this->entityManager->createQueryBuilder();
+            $queryBuilder
+                ->select([
+                    "cha.id",
+                    "cha.status",
+                    "cha.assunto",
+                    "cha.texto",
+                    "cha.dataAbertura",
+                    "cha.idUsuario",
+                    "cha.idEquipamento",
+                    "equi.nome as nome_equipamento",
+                    "equi.descricao as des_equipamento",
+                    "usu.nome as solicitante",
+                    "area.nome as areaTecnica",
+                    "tecn.nome as tecnico",
+                    "cec.nome as centro_custo"
+                ])
+                ->from("App\Entity\Chamado", "cha")
+                ->leftJoin("App\Entity\Equipamento", "equi", 'WITH', "equi.id = cha.idEquipamento")
+                ->leftJoin("App\Entity\Usuario", "usu", 'WITH', "usu.id = cha.idUsuario")
+                ->leftJoin("App\Entity\CentroCusto", "cec", 'WITH', "cec.id = usu.idCentroCusto")
+                ->leftJoin("App\Entity\AreaTec", "area", 'WITH', "area.id = cha.idAreaTec")
+                ->leftJoin("App\Entity\Tecnico", "tecn", 'WITH', "tecn.id = cha.idTecnico")
+                ->andWhere("cha.idAreaTec = :idAreaTec")
+                ->setParameter("idAreaTec", $idAreaTec);
+
+            $query = $queryBuilder->getQuery();
+            $resultQuery = $query->getResult();
+
+            if (empty($resultQuery)) {
+                throw new \Exception("Nenhum chamado encontrado");
+            }
+
+            return [
+                "success" => true,
+                "data" => $resultQuery
+            ];
+
+        } catch (\Exception $exception) {
+            return [
+                "success" => false,
+                "msg" => $exception->getMessage()
+            ];
+        }
+    }
 }
