@@ -53,9 +53,13 @@ class UsuarioController {
                 ->select([
                     "usu.nome",
                     "usu_tipo.descricao as tipo",
-                    "usu.email"
+                    "usu.email",
+                    "usu.idAreaTec",
+                    "area.nome as AreaTecnica",
+                    "usu.idTecnico"
                 ])
                 ->from("App\Entity\Usuario", "usu")
+                ->leftJoin("App\Entity\AreaTec", "area", 'WITH', "area.id = usu.idAreaTec")
                 ->leftJoin("App\Entity\UsuarioTipo", "usu_tipo", 'WITH', "usu_tipo.id = usu.tipo");
 
             $query = $queryBuilder->getQuery();
