@@ -211,6 +211,15 @@ $klein->respond('GET', '/chamadosPorAreaTecnica/[i:idAreaTec]', function ($reque
     }
 });
 
+$klein->respond('GET', '/chamadosPorUsuario/[i:idUsuario]', function ($request) {
+    try {
+        verificaLogin($request->headers()->get("AuthorizationManut"));
+        return json_encode((new ChamadoController())->getChamadoCompletoByIdUsuario($request->idUsuario));
+    } catch (\Exception $exception) {
+        return returnUsuarioNaoAutenticadoOrExeption($exception);
+    }
+});
+
 
 //rotas para preencher DB para testes
 
