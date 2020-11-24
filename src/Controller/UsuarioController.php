@@ -55,8 +55,7 @@ class UsuarioController {
                     "usu_tipo.descricao as tipo",
                     "usu.email",
                     "usu.idAreaTec",
-                    "area.nome as AreaTecnica",
-                    "usu.idTecnico"
+                    "area.nome as areaTecnica"
                 ])
                 ->from("App\Entity\Usuario", "usu")
                 ->leftJoin("App\Entity\AreaTec", "area", 'WITH', "area.id = usu.idAreaTec")

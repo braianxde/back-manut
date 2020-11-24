@@ -103,22 +103,28 @@ class ComentarioController {
 
     public function getComentarioByIdChamado($idChamado) {
         try {
-            $comentario = $this->entityManager->find('App\Entity\Comentario', $idChamado);
+            $queryBuilder = $this->entityManager->createQueryBuilder();
+            $queryBuilder
+                ->select([
+                    "com.id",
+                    "com.texto",
+                    "com.dataComentario",
+                    "com.idChamado"
+                ])
+                ->from("App\Entity\Comentario", "com")
+                ->andWhere("com.idChamado = :idChamado")
+                ->setParameter("idChamado", $idChamado);
 
-            if (empty($comentario)) {
-                throw new \Exception("Nenhum comentário encontrado");
+            $query = $queryBuilder->getQuery();
+            $resultQuery = $query->getResult();
+
+            if (empty($resultQuery)) {
+                throw new \Exception("Nenhum Comentário encontrado");
             }
-
-            $result[] = [
-                'id' => $comentario->getId(),
-                'texto' => $comentario->getTexto(),
-                'dataComentario' => $comentario->getDataComentario(),
-                'idChamado' => $comentario->getIdChamado()
-            ];
 
             return [
                 "success" => true,
-                "data" => $result
+                "data" => $resultQuery
             ];
 
         } catch (\Exception $exception) {

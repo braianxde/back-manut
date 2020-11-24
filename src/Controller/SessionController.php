@@ -20,9 +20,14 @@ class SessionController{
             ->select([
                 "usu.token",
                 "usu.id",
-                "usu.nome"
+                "usu.nome",
+                "usu.idAreaTec",
+                "tec.id as idTecnico",
+                "area.nome as areaTecnica"
             ])
             ->from("App\Entity\Usuario", "usu")
+            ->leftJoin("App\Entity\AreaTec", "area", 'WITH', "area.id = usu.idAreaTec")
+            ->leftJoin("App\Entity\Tecnico", "tec", 'WITH', "tec.idUsuario = usu.id")
             ->andWhere("usu.senha = :senha")
             ->setParameter("senha", $senhaMD5)
             ->andWhere("usu.email = :email")
@@ -38,6 +43,9 @@ class SessionController{
                     "token" => $result["token"],
                     "id" => $result["id"],
                     "nome" => $result["nome"],
+                    "idAreaTec" => $result["idAreaTec"],
+                    "idTecnico" => $result["idTecnico"],
+                    "areaTecnica" => $result["areaTecnica"],
                     "idce" => $result["nome"],
                     "descrica" => $result["nome"],
                 ]
