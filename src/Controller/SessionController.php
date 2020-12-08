@@ -23,7 +23,8 @@ class SessionController{
                 "usu.nome",
                 "usu.idAreaTec",
                 "tec.id as idTecnico",
-                "area.nome as areaTecnica"
+                "area.nome as areaTecnica",
+                "usu.tipo"
             ])
             ->from("App\Entity\Usuario", "usu")
             ->leftJoin("App\Entity\AreaTec", "area", 'WITH', "area.id = usu.idAreaTec")
@@ -48,6 +49,7 @@ class SessionController{
                     "areaTecnica" => $result["areaTecnica"],
                     "idce" => $result["nome"],
                     "descrica" => $result["nome"],
+                    "tipo" => $result["tipo"],
                 ]
             ];
         }
